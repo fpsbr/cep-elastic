@@ -12,8 +12,10 @@ unzip CEP-dados-2018-UTF8.zip
 
 - Subir o elasticsearch:
 
+```bash
 cd elasticsearch-7.2.0/
 bin/elasticsearch
+```
 
 - Abrir o Postman e importar a collection do arquivo postman/address.postman_collection.json
 
