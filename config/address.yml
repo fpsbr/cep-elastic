@@ -1,0 +1,30 @@
+input {
+	#file {
+	#	path => "/home/felipe/Downloads/cep-search/data/ceps_ini.txt"
+	#	start_position => beginning
+	#	ignore_older => 0 
+	# sincedb_path => "/dev/null"
+	#}
+	stdin { } 
+}
+
+filter {
+	csv {
+		separator => "	"
+		columns => ["cep", "cidade", "bairro", "addressname"]
+	}
+}
+
+output {
+  elasticsearch { 
+		index => "address"
+		hosts => ["localhost:9200"]
+	}
+
+	stdout {
+		codec => rubydebug
+	}
+	#file {
+	#	path => "/home/felipe/Downloads/cep-search/data/saida_ceps_ini.txt"
+	#}
+}

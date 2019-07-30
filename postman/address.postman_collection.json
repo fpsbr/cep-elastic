@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "6361c6a4-ab08-4742-9288-c1a567f26541",
+		"name": "address",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Delete Index",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Index",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"settings\": {\n        \"number_of_shards\": 1,\n        \"number_of_replicas\": 1,\n        \"analysis\": {\n            \"analyzer\": {\n                \"analyzer_pt\": {\n                    \"tokenizer\": \"standard\",\n                    \"filter\": [\n                        \"lowercase\",\n                        \"stemmer_pt\",\n                        \"asciifolding\"\n                    ]\n                }\n            },\n            \"filter\": {\n                \"stemmer_pt\": {\n                    \"type\": \"stemmer\",\n                    \"name\": \"brazilian\"\n                }\n            }\n        }\n    },\n    \"mappings\": {\n        \"properties\": {\n            \"addressname\": {\n                \"type\": \"text\",\n                \"analyzer\": \"analyzer_pt\"\n            },\n             \"cidade\": {\n                \"type\": \"text\"\n            }\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"address"
+					]
+				},
+				"description": "- Keyword fields are only searchable by their exact value\n- Text fields are full-text values. They are passed through an analyser to convert the string to a list of individual terms before being indexed (see Analyse)\n\nhttps://gist.github.com/luizgpsantos/f9b2f57ea13e7515b48a"
+			},
+			"response": []
+		},
+		{
+			"name": "Count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/address/_count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"address",
+						"_count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/address/_search?size=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"address",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"match\": {\n            \"addressname\": \"silvia telles\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/address/_search?size=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"address",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Filter",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"match\": {\n                        \"addressname\": \"silvia telles\"\n                    }\n                },\n                {\n                    \"match\": {\n                        \"cidade\": \"SP\"\n                    }\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/address/_search?size=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"address",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
