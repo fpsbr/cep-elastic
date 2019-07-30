@@ -7,8 +7,10 @@ https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.2.0-linux-x
 
 - Descompactar o arquivo de ceps:
 
+```bash
 cd data
 unzip CEP-dados-2018-UTF8.zip
+```
 
 - Subir o elasticsearch:
 
