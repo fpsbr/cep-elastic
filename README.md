@@ -1,4 +1,4 @@
-#CEP Search
+# CEP Search
 
 - Baixar logstash e elasticsearch 7.2.0 e descompactar na raiz
 
@@ -17,7 +17,7 @@ bin/elasticsearch
 
 - Abrir o Postman e importar a collection do arquivo postman/address.postman_collection.json
 
-###Importar dados do cep.txt: 
+### Importar dados do cep.txt: 
 
 - Se ja existir o index, apaga-lo no elastic com o Postman (Delete Index)
 - Criar o index (Create Index)
